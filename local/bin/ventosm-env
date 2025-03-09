@@ -1,0 +1,1 @@
+apptainer shell ~/work/containers/apptainer/ventosm_env.sif

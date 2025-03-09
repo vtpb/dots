@@ -1,0 +1,6 @@
+set default-bg "#FFFFFF"
+set default-fg "#000000"
+set statusbar-bg "#2e3440"
+set statusbar-fg "#FFFFFF"
+set window-title-basename "true"
+set selection-clipboard "clipboard"
