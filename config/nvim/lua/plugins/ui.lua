@@ -1,150 +1,151 @@
 return {
 
-  -- bufferline
-  {
-    "akinsho/bufferline.nvim",
-    -- enabled = false,
-    event = "VeryLazy",
-    dependencies = {
-      { 
-        "nvim-tree/nvim-web-devicons", 
-        lazy = true,
-      },
-    },
-    opts = {
-      options = {
-        always_show_bufferline = false,
-        mode = "buffers",
-        buffer_close_icon = require("core.ui.icons").bufferline.close_buffer,
-        modified_icon = require("core.ui.icons").bufferline.modified_icon,
-        close_icon = require("core.ui.icons").bufferline.close,
-        max_name_length = 14,
-        max_prefix_length = 13,
-        tab_size = 20,
-        separator_style = {'', ''},
-        diagnostics = false,
-        offsets = {
-            { 
-              filetype = "NvimTree", 
-              text = "NvimTree", 
-              highlight = "Directory", 
-              text_align = "left", 
-              padding = 1 
-            },
-            { 
-              filetype = "neo-tree", 
-              text = "Neo-tree", 
-              highlight = "Directory", 
-              text_align = "left", 
-              padding = 1 
-            },
-            { 
-              filetype = "Outline", 
-              text = "Outline", 
-              -- highlight = "Directory", 
-              -- text_align = "left", 
-              padding = 1 },
-        },
-        indicator = {
-          style = 'none',
-        },
-      },
-    },
-    config = function(_, opts)
-      require("bufferline").setup(opts)
-      vim.opt.termguicolors = true
-    end,
-    keys = function() 
-      require("core.mappings").bufferline() 
-    end,
-  },
+	-- bufferline
+	{
+		"akinsho/bufferline.nvim",
+		-- enabled = false,
+		event = "VeryLazy",
+		dependencies = {
+			{
+				"nvim-tree/nvim-web-devicons",
+				lazy = true,
+			},
+		},
+		opts = {
+			options = {
+				always_show_bufferline = false,
+				mode = "buffers",
+				buffer_close_icon = require("core.ui.icons").bufferline.close_buffer,
+				modified_icon = require("core.ui.icons").bufferline.modified_icon,
+				close_icon = require("core.ui.icons").bufferline.close,
+				max_name_length = 14,
+				max_prefix_length = 13,
+				tab_size = 20,
+				separator_style = { "", "" },
+				diagnostics = false,
+				offsets = {
+					{
+						filetype = "NvimTree",
+						text = "NvimTree",
+						highlight = "Directory",
+						text_align = "left",
+						padding = 1,
+					},
+					{
+						filetype = "neo-tree",
+						text = "Neo-tree",
+						highlight = "Directory",
+						text_align = "left",
+						padding = 1,
+					},
+					{
+						filetype = "Outline",
+						text = "Outline",
+						-- highlight = "Directory",
+						-- text_align = "left",
+						padding = 1,
+					},
+				},
+				indicator = {
+					style = "none",
+				},
+			},
+		},
+		config = function(_, opts)
+			require("bufferline").setup(opts)
+			vim.opt.termguicolors = true
+		end,
+		keys = function()
+			require("core.mappings").bufferline()
+		end,
+	},
 
-  -- lualine
-  {
-    'nvim-lualine/lualine.nvim',
-    event = "VeryLazy",
-    dependencies = { 
-      { 
-        'nvim-tree/nvim-web-devicons', 
-        lazy = true 
-      },
-    },
-    opts = function()
-      -- return require("plugins.configs.lualine")
-      return require("plugins.configs.lualine_minimal")
-    end,
-  },
+	-- lualine
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			{
+				"nvim-tree/nvim-web-devicons",
+				lazy = true,
+			},
+		},
+		opts = function()
+			-- return require("plugins.configs.lualine")
+			return require("plugins.configs.lualine_minimal")
+		end,
+	},
 
-  -- colorizer
-  {
-    "NvChad/nvim-colorizer.lua",
-    lazy = true,
-    name = "colorizer",
-    event = { "BufRead", "BufWinEnter", "BufNewFile" },
-    opts = {
-      filetypes = { "*" },
-      user_default_options = {
-        RGB = true, -- #RGB hex codes
-        RRGGBB = true, -- #RRGGBB hex codes
-        names = false, -- "Name" codes like Blue
-        RRGGBBAA = false, -- #RRGGBBAA hex codes
-        rgb_fn = false, -- CSS rgb() and rgba() functions
-        hsl_fn = false, -- CSS hsl() and hsla() functions
-        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-        mode = "background", -- Set the display mode.
-      },
-    },
-    config = function(_, opts)
-      require("colorizer").setup(opts)
-      -- execute colorizer as soon as possible
-      vim.defer_fn(function()
-        require("colorizer").attach_to_buffer(0)
-      end, 0)
-    end,
-  },
+	-- colorizer
+	{
+		"NvChad/nvim-colorizer.lua",
+		lazy = true,
+		name = "colorizer",
+		event = { "BufRead", "BufWinEnter", "BufNewFile" },
+		opts = {
+			filetypes = { "*" },
+			user_default_options = {
+				RGB = true, -- #RGB hex codes
+				RRGGBB = true, -- #RRGGBB hex codes
+				names = false, -- "Name" codes like Blue
+				RRGGBBAA = false, -- #RRGGBBAA hex codes
+				rgb_fn = false, -- CSS rgb() and rgba() functions
+				hsl_fn = false, -- CSS hsl() and hsla() functions
+				css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+				css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+				mode = "background", -- Set the display mode.
+			},
+		},
+		config = function(_, opts)
+			require("colorizer").setup(opts)
+			-- execute colorizer as soon as possible
+			vim.defer_fn(function()
+				require("colorizer").attach_to_buffer(0)
+			end, 0)
+		end,
+	},
 
-  -- indent guides
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    lazy = true,
-    dependencies = {
-      { "MunifTanjim/nui.nvim", lazy = true }
-    },
-    event = { "BufRead", "BufWinEnter", "BufNewFile" },
-    opts = {
-      -- char = "|"
-      enabled = true,
-      exclude = {
-        filetypes = {
-        "help",
-        "alpha",
-        "dashboard",
-        "neo-tree",
-        "Trouble",
-        "Lazy",
-        "terminal",
-        "lspinfo",
-        "TelescopePrompt",
-        "TelescopeResults",
-        "mason",
-        },
-        buftypes = { "terminal" },
-      },
-      whitespace = {
-        remove_blankline_trail = false,
-      },
-      -- scope = {
-      --   enabled = false,
-      --   show_start = true,
-      --   show_exact_scope = true,
-      -- },
-    },
-    keys = function()
-      require("core.mappings").blankline()
-    end,
-  },
+	-- indent guides
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		lazy = true,
+		dependencies = {
+			{ "MunifTanjim/nui.nvim", lazy = true },
+		},
+		event = { "BufRead", "BufWinEnter", "BufNewFile" },
+		opts = {
+			-- char = "|"
+			enabled = true,
+			exclude = {
+				filetypes = {
+					"help",
+					"alpha",
+					"dashboard",
+					"neo-tree",
+					"Trouble",
+					"Lazy",
+					"terminal",
+					"lspinfo",
+					"TelescopePrompt",
+					"TelescopeResults",
+					"mason",
+				},
+				buftypes = { "terminal" },
+			},
+			whitespace = {
+				remove_blankline_trail = false,
+			},
+			-- scope = {
+			--   enabled = false,
+			--   show_start = true,
+			--   show_exact_scope = true,
+			-- },
+		},
+		keys = function()
+			require("core.mappings").blankline()
+		end,
+	},
 
 	-- active indent guide and indent text objects
 	-- {
@@ -220,35 +221,34 @@ return {
       { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll forward", mode = {"i", "n", "s"} },
       { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll backward", mode = {"i", "n", "s"}},
     },
-  },
+	},
 
-  -- alpha
-  {
-    "goolord/alpha-nvim",
-    -- nvchad
-    config = function()
-      require "plugins.configs.alpha"
-    end,
-  },
+	-- alpha
+	{
+		"goolord/alpha-nvim",
+		-- nvchad
+		config = function()
+			require("plugins.configs.alpha")
+		end,
+	},
 
-  { "nvim-tree/nvim-web-devicons", lazy = true },
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
 
-  -- better vim.ui
-  -- {
-  --   "stevearc/dressing.nvim",
-  --   lazy = true,
-  --   init = function()
-  --     ---@diagnostic disable-next-line: duplicate-set-field
-  --     vim.ui.select = function(...)
-  --       require("lazy").load({ plugins = { "dressing.nvim" } })
-  --       return vim.ui.select(...)
-  --     end
-  --     ---@diagnostic disable-next-line: duplicate-set-field
-  --     vim.ui.input = function(...)
-  --       require("lazy").load({ plugins = { "dressing.nvim" } })
-  --       return vim.ui.input(...)
-  --     end
-  --   end,
-  -- },
-
+	-- better vim.ui
+	-- {
+	--   "stevearc/dressing.nvim",
+	--   lazy = true,
+	--   init = function()
+	--     ---@diagnostic disable-next-line: duplicate-set-field
+	--     vim.ui.select = function(...)
+	--       require("lazy").load({ plugins = { "dressing.nvim" } })
+	--       return vim.ui.select(...)
+	--     end
+	--     ---@diagnostic disable-next-line: duplicate-set-field
+	--     vim.ui.input = function(...)
+	--       require("lazy").load({ plugins = { "dressing.nvim" } })
+	--       return vim.ui.input(...)
+	--     end
+	--   end,
+	-- },
 }
