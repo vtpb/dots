@@ -146,70 +146,71 @@ return {
     end,
   },
 
-  -- active indent guide and indent text objects
-  -- {
-  --   "echasnovski/mini.indentscope",
-  --   version = false, -- wait till new 0.7.0 release to put it back on semver
-  --   event = { "BufReadPre", "BufNewFile" },
-  --   opts = {
-  --     -- symbol = "▏",
-  --     symbol = "│",
-  --     options = { try_as_border = true },
-  --   },
-  --   init = function()
-  --     vim.api.nvim_create_autocmd("FileType", {
-  --       pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-  --       callback = function()
-  --         vim.b.miniindentscope_disable = true
-  --       end,
-  --     })
-  --   end,
-  --   config = function(_, opts)
-  --     require("mini.indentscope").setup(opts)
-  --   end,
-  -- },
-  
-  -- noicer ui (fancy)
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      {
-        "rcarriga/nvim-notify",
-        keys = {
-          {
-            "<leader>un",
-            function()
-              require("notify").dismiss({ silent = true, pending = true })
-            end,
-            desc = "Delete all Notifications",
-          },
-        },
-        opts = {
-          timeout = 3000,
-          max_height = function()
-            return math.floor(vim.o.lines * 0.75)
-          end,
-          max_width = function()
-            return math.floor(vim.o.columns * 0.75)
-          end,
-        },
-      },
-    },
-    opts = {
-      lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-        },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-      },
-    },
+	-- active indent guide and indent text objects
+	-- {
+	--   "echasnovski/mini.indentscope",
+	--   version = false, -- wait till new 0.7.0 release to put it back on semver
+	--   event = { "BufReadPre", "BufNewFile" },
+	--   opts = {
+	--     -- symbol = "▏",
+	--     symbol = "│",
+	--     options = { try_as_border = true },
+	--   },
+	--   init = function()
+	--     vim.api.nvim_create_autocmd("FileType", {
+	--       pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+	--       callback = function()
+	--         vim.b.miniindentscope_disable = true
+	--       end,
+	--     })
+	--   end,
+	--   config = function(_, opts)
+	--     require("mini.indentscope").setup(opts)
+	--   end,
+	-- },
+
+	-- noicer ui (fancy)
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			{
+				"rcarriga/nvim-notify",
+				keys = {
+					{
+						"<leader>un",
+						function()
+							require("notify").dismiss({ silent = true, pending = true })
+						end,
+						desc = "Delete all Notifications",
+					},
+				},
+				opts = {
+					fps = 60,
+					timeout = 3000,
+					max_height = function()
+						return math.floor(vim.o.lines * 0.75)
+					end,
+					max_width = function()
+						return math.floor(vim.o.columns * 0.75)
+					end,
+				},
+			},
+		},
+		opts = {
+			lsp = {
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+				},
+			},
+			presets = {
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+			},
+		},
     -- stylua: ignore
     keys = {
       { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
